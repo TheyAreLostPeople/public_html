@@ -48,6 +48,8 @@
 			}
 		}
 		
+		/*
+		
 		// une methode d'affichage.
 		public function afficher() {
 			echo '
@@ -59,15 +61,20 @@
 				</ul>
 			';
 		}
+		
+		*/
 
 		public static function getAllVoitures() {
 			$req = Model::$pdo->query("SELECT * FROM voiture");
 			$req->setFetchMode(PDO::FETCH_CLASS,'ModelVoiture');
 			$tab_voit = $req->fetchAll();
-
+			
+			/*
 			foreach($tab_voit as $row) {
 				$row->afficher();
 			}
+			*/
+			return $tab_voit;
 		}
 
 		public static function getVoitureByImmat($immat) {

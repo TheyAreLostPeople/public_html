@@ -8,7 +8,15 @@
 	<body>
 		<?php
 			foreach ($tab_v as $v) {
-				echo '<p> Voiture d\'immatriculation ' . $v->getImmatriculation() . '.</p>';
+				echo '
+					<p>
+						Voiture d\'immatriculation :
+						<a href="../controller/routeur.php?action=read&immat='.$v->getImmatriculation().'">
+							'.$v->getImmatriculation().'
+						</a>
+						.
+					</p>
+				';
 			}
 		?>
 	</body>
