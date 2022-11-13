@@ -5,7 +5,7 @@
 				echo '
 					<p>
 						Voiture d\'immatriculation :
-						<a href="index.php?action=read&immat='.rawurlencode($v->getImmatriculation()).'">
+						<a href="index.php?controller=voiture&action=read&immat='.rawurlencode($v->getImmatriculation()).'">
 							'.$vImmatriculation.'
 						</a>
 						.

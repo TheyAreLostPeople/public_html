@@ -13,11 +13,11 @@
 
 				<div style="display: flex;flex-direction: row;">
 					
-					<a href="index.php?action=update&immat='.$vImmatriculation.'">
+					<a href="index.php?controller=voiture&action=update&immat='.$vImmatriculation.'">
 						<button>modifier</button>
 					</a>
 					
-					<a href="index.php?action=delete&immat='.$vImmatriculation.'">
+					<a href="index.php?controller=voiture&action=delete&immat='.$vImmatriculation.'">
 						<button>supprimer</button>
 					</a>
 					

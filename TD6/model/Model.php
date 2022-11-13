@@ -69,6 +69,37 @@
 			return $class_obj[0];
 		}
 
+		public static function save($o) {
+			$table_name = static::$object;
+			$values = $o->getArrayOfAll();
+			$sql_part1 = "INSERT INTO $table_name (";
+			$sql_part2 = ") VALUES (";
+			$sql_end = ");";
+			foreach ($values as $column => $value) {
+				$sql_part1 = $sql_part1."$column, ";
+				$sql_part2 = $sql_part2.":$column, ";
+			}
+			$sql_part1 = rtrim($sql_part1, ", ");
+			$sql_part2 = rtrim($sql_part2, ", ");
+			$sql = $sql_part1.$sql_part2.$sql_end;
+			$req_prep = Model::$pdo->prepare($sql);
+			$req_prep->execute($values);
+		}
+
+		public static function update($o) {
+			$table_name = static::$object;
+			$primary_key = static::$primary;
+			$values = $o->getArrayOfAll();
+			$sql = "UPDATE $table_name SET ";
+			foreach ($values as $column => $value) {
+				$sql = $sql."$table_name.$column = :$column, ";
+			}
+			$sql = rtrim($sql, ", ");
+			$sql = $sql." WHERE $table_name.$primary_key = :$primary_key;";
+			$req_prep = Model::$pdo->prepare($sql);
+			$req_prep->execute($values);
+		}
+
 		public static function delete($primary_value) {
 			$table_name = static::$object;
 			$primary_key = static::$primary;

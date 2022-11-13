@@ -9,15 +9,15 @@
 		<nav style="display: flex;flex-direction: row;">
 
 			<div style="border: 1px solid black;text-align:center;">
-				<a href="index.php?action=readAll">Gestion des voitures</a>
+				<a href="index.php?controller=voiture&action=readAll">Gestion des voitures</a>
 			</div>
 
 			<div style="border: 1px solid black;text-align:center;">
-				<a href="index.php?action=readAll&controller=utilisateur">Gestion des utilisateurs</a>
+				<a href="index.php?controller=utilisateur&action=readAll">Gestion des utilisateurs</a>
 			</div>
 
 			<div style="border: 1px solid black;text-align:center;">
-				<a href="index.php?action=readAll&controller=trajet">Gestion des trajets</a>
+				<a href="index.php?controller=trajet&action=readAll">Gestion des trajets</a>
 			</div>
 
 		</nav>

@@ -1,23 +1,23 @@
 <?php
-	require_once (File::build_path(['model','ModelVoiture.php'])); // chargement du modèle
-	
-	class ControllerVoiture {
+	require_once (File::build_path(['model','ModelTrajet.php'])); // chargement du modèle
 
-		protected static $object = 'voiture';
+	class ControllerTrajet {
+
+		protected static $object = 'trajet';
 
 		public static function readAll() {
-			$tab_v = ModelVoiture::selectAll(); //appel au modèle pour gerer la BD
+			$tab_t = ModelTrajet::selectAll(); //appel au modèle pour gerer la BD
 			$controller = static::$object;
 			$view = 'list';
-			$pagetitle = 'Liste des voitures';
+			$pagetitle = 'Liste des trajets';
 			require (File::build_path(['view','view.php'])); //redirige vers la vue
 		}
 		public static function read($argument) {
-			$v = ModelVoiture::select($argument);
-			if ($v != NULL) {
+			$t = ModelTrajet::select($argument);
+			if ($t != NULL) {
 				$controller = static::$object;
 				$view = 'detail';
-				$pagetitle = 'Detail des voitures';
+				$pagetitle = 'Detail des trajets';
 				require (File::build_path(['view','view.php']));
 			}
 			else {
@@ -30,45 +30,45 @@
 		public static function create() {
 			$champ_action = 'created';
 			$readonly = '';// on ne doit pas utiliser readonly
-			$v_form = new ModelVoiture('','','');
+			$t_form = new ModelTrajet('','','','','','','');
 			$controller = static::$object;
 			$view = 'update';
-			$pagetitle = 'Formulaire de création de voiture';
+			$pagetitle = 'Formulaire de création de trajet';
 			require (File::build_path(['view','view.php']));
 		}
 		public static function created($argument) {
-			ModelVoiture::save($argument);// sauvegarde de la voiture
-			$tab_v = ModelVoiture::selectAll();// puis affichage de toutes les voitures pour pouvoir verrifier
+			ModelTrajet::save($argument);// sauvegarde du trajet
+			$tab_t = ModelTrajet::selectAll();// puis affichage de tout les trajets
 			$controller = static::$object;
 			$view = 'created';
-			$pagetitle = 'La voiture a bien été créée !';
+			$pagetitle = 'Le trajet a bien été créée !';
 			require (File::build_path(['view','view.php']));
 		}
 		public static function update($argument) {
 			$champ_action = 'updated';
 			$readonly = ' readonly';// on doit utiliser redaonly
-			$v_form = ModelVoiture::select($argument);// on récupère la voiture
+			$t_form = ModelTrajet::select($argument);// on récupère le trajet
 			$controller = static::$object;// on affiche le formulaire
 			$view = 'update';
-			$pagetitle = 'Formulaire de mise à jour de voiture';
+			$pagetitle = 'Formulaire de mise à jour de trajet';
 			require (File::build_path(['view','view.php']));
 		}
 		public static function updated($argument) {
-			ModelVoiture::update($argument);// mise à jour de la voiture
-			$immat = $argument->getImmatriculation();// on garde l'imatriculation pour pouvoir l'afficher dans une vue
-			$tab_v = ModelVoiture::selectAll();// puis affichage de toutes les voitures pour pouvoir verrifier
+			ModelTrajet::update($argument);// mise à jour du trajet
+			$id = $argument->get('id');// on garde l'id pour pouvoir l'afficher dans une vue
+			$tab_t = ModelTrajet::selectAll();// puis affichage de toutes les trajets pour pouvoir verrifier
 			$controller = static::$object;
 			$view = 'updated';
-			$pagetitle = 'La voiture a bien été mise à jour !';
+			$pagetitle = 'Le trajet a bien été mise à jour !';
 			require (File::build_path(['view','view.php']));
 		}
 		public static function delete($argument) {
-			ModelVoiture::delete($argument);// supression de la voiture
-			$immat = $argument;// on garde l'imatriculation pour pouvoir l'afficher dans une vue
-			$tab_v = ModelVoiture::selectAll();// puis affichage de toutes les voitures pour pouvoir verrifier
+			ModelTrajet::delete($argument);// supression du trajet
+			$id = $argument;// on garde l'id pour pouvoir l'afficher dans une vue
+			$tab_t = ModelTrajet::selectAll();// puis affichage de tout les trajets pour pouvoir verrifier
 			$controller = static::$object;
 			$view = 'deleted';
-			$pagetitle = 'La voiture a bien été supprimée !';
+			$pagetitle = 'Le trajet a bien été supprimée !';
 			require (File::build_path(['view','view.php']));
 		}
 	}

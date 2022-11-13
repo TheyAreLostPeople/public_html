@@ -34,6 +34,14 @@
 		public function setPrenom($prenom2) {
 			$this->prenom = $prenom2;
 		}
+
+		public function getArrayOfAll() {
+			return array(
+				'login' => $this->getLogin(),
+				'nom' => $this->getNom(),
+				'prenom' => $this->getPrenom(),
+			);
+		}
 		
 		// un constructeur
 		public function __construct($l = NULL, $n = NULL, $p = NULL) {
